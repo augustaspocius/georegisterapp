@@ -3,6 +3,8 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using GeoRegisterApp.Services;
 using GeoRegisterApp.Views;
+using System.IO;
+using Xamarin.Essentials;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace GeoRegisterApp
@@ -12,17 +14,28 @@ namespace GeoRegisterApp
         //TODO: Replace with *.azurewebsites.net url after deploying backend to Azure
         public static string AzureBackendUrl = "http://localhost:5000";
         public static bool UseMockDataStore = true;
+        public static string FolderPath { get; private set; }
 
         public App()
         {
             InitializeComponent();
-
+            FolderPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData));
             if (UseMockDataStore)
                 DependencyService.Register<MockDataStore>();
             else
                 DependencyService.Register<AzureDataStore>();
 
-            MainPage = new MainPage();
+            var id = Preferences.Get("user_id", "");
+            if (id == "")
+            {
+                MainPage = new NavigationPage(new SendObjectBodyPage());
+            }
+            else
+            {
+                MainPage = new NavigationPage(new RegisterPage());
+            }
+
+            // MainPage();
         }
 
         protected override void OnStart()
