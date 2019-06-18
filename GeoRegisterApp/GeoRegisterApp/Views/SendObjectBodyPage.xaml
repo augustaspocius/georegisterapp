@@ -13,7 +13,7 @@
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" />
             <Editor Placeholder="Įvesti darbuotojo ID"
-                Text="{Binding UserId}"
+                Text="{Binding userId}"
                 HeightRequest="100" />
             <Grid>
                 <Grid.ColumnDefinitions>

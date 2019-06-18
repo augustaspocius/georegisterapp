@@ -25,7 +25,7 @@ namespace GeoRegisterApp.Views
         {
             var sendobject = (SendObjectBody)BindingContext;
 
-            Preferences.Set("user_id", sendobject.UserId);
+            Preferences.Set("user_id", sendobject.userId);
 
             await Navigation.PushAsync(new RegisterPage());
         }
