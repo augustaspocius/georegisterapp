@@ -24,9 +24,12 @@ namespace GeoRegisterApp.Views
             String myDate = DateTime.Now.ToString();
             string latitude = "37.422";
             string longitude = "-122.084";
+
             try
             {
-                var location = await Geolocation.GetLastKnownLocationAsync();
+                //var location = await Geolocation.GetLastKnownLocationAsync();
+                var request = new GeolocationRequest(GeolocationAccuracy.Best);
+                var location = await Geolocation.GetLocationAsync(request);
 
                 if (location != null)
                 {
@@ -54,6 +57,13 @@ namespace GeoRegisterApp.Views
             }
 
            SendObjectResult result = await _restService.PostSendObjectResultAsync(Constants.StatybuDemoEndpoint, myDate, Preferences.Get("user_id", ""), longitude, latitude);
+            if(_restService.ResultIsOk("0"))
+            {
+                await Navigation.PushAsync(new ArrivalDeparturePage(Preferences.Get("user_id", ""), myDate, result));
+            }
         }
+
+        
+    
     }
 }

@@ -18,26 +18,6 @@ namespace GeoRegisterApp.Services
             _client = new HttpClient();
         }
 
-        public async Task<SendObjectBody> GetSendObjectBodyAsync(string uri)
-        {
-            SendObjectBody objectBody = null;
-            try
-            {
-                HttpResponseMessage response = await _client.GetAsync(uri);
-                if (response.IsSuccessStatusCode)
-                {
-                    string content = await response.Content.ReadAsStringAsync();
-                    objectBody = JsonConvert.DeserializeObject<SendObjectBody>(content);
-                }
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine("\tERROR {0}", ex.Message);
-            }
-
-            return objectBody;
-        }
-
         public async Task<SendObjectResult> PostSendObjectResultAsync(string uri, string time, string userid, string longitude, string latitude)
         {
             SendObjectBody objectBody = new SendObjectBody { dateTime = time, userId = userid, longitude = longitude, latitude = latitude};
@@ -50,6 +30,7 @@ namespace GeoRegisterApp.Services
                 {
                     string content = await response.Content.ReadAsStringAsync();
                     objectResult = JsonConvert.DeserializeObject<SendObjectResult>(content);
+
                 }
             }
             catch (Exception ex)
@@ -59,5 +40,37 @@ namespace GeoRegisterApp.Services
 
             return objectResult;
         }
+
+        public async Task<ArrivalDeparture> PostArrivalDepartureAsync(string uri, ArrivalDeparture arrivalDepartureobj)
+        {
+            ArrivalDeparture objectBody = arrivalDepartureobj;
+            //{ PAKEISTI GAUTO REZULTATO DUOMENIS }
+            SendObjectResult objectResult = new SendObjectResult { };
+            try
+            {
+                var postcontent = JsonConvert.SerializeObject(objectBody);
+                HttpResponseMessage response = await _client.PostAsync(uri, new StringContent(postcontent));
+                if (response.IsSuccessStatusCode)
+                {
+                    string content = await response.Content.ReadAsStringAsync();
+                    objectResult = JsonConvert.DeserializeObject<SendObjectResult>(content);
+                    objectBody.userName = objectResult.userName;
+                    objectBody.userSurname = objectResult.userSurname;
+                    objectBody.workingPlaceName = objectResult.workingPlaceName;
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("\tERROR {0}", ex.Message);
+            }
+
+            return objectBody;
+        }
+
+        public bool ResultIsOk(string result)
+        {
+            return result == "0" ? true : false;
+        }
+
     }
 }

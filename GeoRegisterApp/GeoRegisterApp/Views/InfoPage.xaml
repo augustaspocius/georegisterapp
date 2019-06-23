@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:GeoRegisterApp.Models"
+             x:Class="GeoRegisterApp.Views.InfoPage">
+    <ContentPage.BindingContext>
+        <local:ArrivalDeparture/>
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="Užregistruota"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" />
+            <Label Text="{Binding DisplayName}"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" />
+            <Label Text="{Binding add}"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" />
+            <Label Text="{Binding workingPlaceName}"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" />
+            <Button Text="Kita Registracija"
+                    Clicked="NextRegistrationButtonClicked" />
+            <Button Text="Išeiti"
+                    Clicked="ExitButtonClicked" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

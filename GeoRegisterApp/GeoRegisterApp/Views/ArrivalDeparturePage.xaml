@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GeoRegisterApp.Views.ArrivalDeparturePage">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="Pasirinkite ar atvykstate ar išvykstate iš vietos"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" />
+            <Button Text="Atvykimas"
+                    Clicked="OnArrivalButtonClicked" />
+            <Button Text="Išvykimas"
+                    Clicked="OnDepartureButtonClicked" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
