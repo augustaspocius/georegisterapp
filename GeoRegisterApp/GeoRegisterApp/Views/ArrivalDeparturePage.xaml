@@ -4,13 +4,32 @@
              x:Class="GeoRegisterApp.Views.ArrivalDeparturePage">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Pasirinkite ar atvykstate ar išvykstate iš vietos"
+            <Label 
+                FontSize="Large"
+                FontAttributes="Bold"
                 VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-            <Button Text="Atvykimas"
-                    Clicked="OnArrivalButtonClicked" />
-            <Button Text="Išvykimas"
-                    Clicked="OnDepartureButtonClicked" />
+                HorizontalOptions="CenterAndExpand"
+                   VerticalTextAlignment="Center"
+                   HorizontalTextAlignment="Center">
+                <Label.Text>Pasirinkite&#10;ar atvykstate ar išvykstate</Label.Text>
+            </Label>
+
+            <Button Text="Atvykau"
+                    BorderRadius="50"
+                    BorderWidth="2"
+                    VerticalOptions="CenterAndExpand"
+                    HorizontalOptions="Center"
+                    Clicked="OnArrivalButtonClicked" 
+                    BackgroundColor="LimeGreen"
+                    TextColor="White"/>
+            <Button Text="Išvykstu"
+                    BorderRadius="50"
+                    BorderWidth="2"
+                    VerticalOptions="CenterAndExpand"
+                    HorizontalOptions="Center"
+                    Clicked="OnDepartureButtonClicked" 
+                    BackgroundColor="Crimson"
+                    TextColor="White"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

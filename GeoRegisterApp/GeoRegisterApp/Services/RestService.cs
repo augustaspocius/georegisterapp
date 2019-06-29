@@ -1,4 +1,5 @@
 ﻿using GeoRegisterApp.Models;
+using GeoRegisterApp.Views;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -12,6 +13,7 @@ namespace GeoRegisterApp.Services
     public class RestService
     {
         HttpClient _client;
+        public BusyPopUp busyPopUp;
 
         public RestService()
         {
@@ -56,7 +58,6 @@ namespace GeoRegisterApp.Services
                     objectResult = JsonConvert.DeserializeObject<SendObjectResult>(content);
                     objectBody.userName = objectResult.userName;
                     objectBody.userSurname = objectResult.userSurname;
-                    objectBody.workingPlaceName = objectResult.workingPlaceName;
                 }
             }
             catch (Exception ex)

@@ -43,13 +43,12 @@ namespace GeoRegisterApp.Views
 
         async void NextRegistrationButtonClicked(object sender, EventArgs e)
         {
-            ((App)App.Current).MainPage = new NavigationPage(new SendObjectBodyPage());
-            // Application.Current.MainPage = new SendObjectBodyPage();
             await Navigation.PopToRootAsync();
         }
 
         async void ExitButtonClicked(object sender, EventArgs e)
         {
+            Android.OS.Process.KillProcess(Android.OS.Process.MyPid());
         }
     }
 }

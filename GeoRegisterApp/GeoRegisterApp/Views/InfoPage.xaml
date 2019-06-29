@@ -9,21 +9,45 @@
     <ContentPage.Content>
         <StackLayout>
             <Label Text="Užregistruota"
+                FontSize="Large"
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" />
+            <!--boldai visi turi but-->
             <Label Text="{Binding DisplayName}"
+                FontSize="Large"
+                FontAttributes="Bold"
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" />
+            <!--boldai visi turi but-->
             <Label Text="{Binding add}"
+                FontSize="Large"
+                FontAttributes="Bold"
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" />
+            <!--boldai visi turi but-->
             <Label Text="{Binding workingPlaceName}"
+                FontSize="Large"
+                FontAttributes="Bold"
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" />
-            <Button Text="Kita Registracija"
-                    Clicked="NextRegistrationButtonClicked" />
-            <Button Text="Išeiti"
-                    Clicked="ExitButtonClicked" />
+            <!--boldai visi turi but-->
+            <Button Text="Kitas Objektas"
+                    BorderRadius="50"
+                    BorderWidth="2"
+                    Clicked="NextRegistrationButtonClicked" 
+                    BackgroundColor="Gold"
+                    TextColor="White"
+                    VerticalOptions="CenterAndExpand"
+                    HorizontalOptions="Center"/>
+            <Button Text="Uždaryti Programą"
+                    BorderRadius="50"
+                    BorderWidth="2"
+                    Clicked="ExitButtonClicked" 
+                    BackgroundColor="Crimson"
+                    TextColor="White"
+                    VerticalOptions="CenterAndExpand"
+                    HorizontalOptions="Center"/>
+            <!--boldai visi turi but-->
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

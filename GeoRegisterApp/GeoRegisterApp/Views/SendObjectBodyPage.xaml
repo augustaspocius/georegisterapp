@@ -12,17 +12,13 @@
                 FontSize="Large"
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" />
-            <Editor Placeholder="Įvesti darbuotojo ID"
+            <Editor Placeholder="Darbuotojo ID"
                 Text="{Binding userId}"
                 HeightRequest="100" />
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
-                <Button Text="Išsaugoti"
+            <Button Text="Išsaugoti"
+                    BorderRadius="50"
+                    BorderWidth="2"
                     Clicked="OnSaveButtonClicked" />
-            </Grid>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

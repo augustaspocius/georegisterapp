@@ -6,7 +6,7 @@ namespace GeoRegisterApp.Models
 {
     public class ArrivalDeparture
     {
-        public string userId { get; set; }
+        public string userid { get; set; }
         public string userName { get; set; }
         public string userSurname { get; set; }
         public string dateTime { get; set; }

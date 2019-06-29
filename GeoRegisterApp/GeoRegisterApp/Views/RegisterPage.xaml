@@ -4,12 +4,37 @@
              x:Class="GeoRegisterApp.Views.RegisterPage">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Sveiki, prašome užsiregistruoti"
-                FontSize="Large"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <Label
+                   FontSize="Large"
+                   HorizontalOptions="CenterAndExpand"
+                   VerticalOptions="CenterAndExpand"
+                   VerticalTextAlignment="Center"
+                   HorizontalTextAlignment="Center">
+                <Label.Text>Sveiki,&#10;prašome užsiregistruoti</Label.Text>
+            </Label>
+            <AbsoluteLayout>
+                <ActivityIndicator x:Name="activity"  
+                       IsRunning="False"  
+                       IsEnabled="False"  
+                       IsVisible="False"  
+                       Color="Blue"  
+                       BackgroundColor="Black"/>
+            </AbsoluteLayout>
             <Button Text="Registruotis"
-                    Clicked="OnRegisterButtonClicked" />
+                    Clicked="OnRegisterButtonClicked"
+                    VerticalOptions="CenterAndExpand"
+                    HorizontalOptions="Center"
+                    BorderRadius="50"
+                    BorderWidth="2"
+                    BackgroundColor="DodgerBlue"
+                    TextColor="White"/>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2" />
+                    <ColumnDefinition Width="2" />
+                </Grid.ColumnDefinitions>
+            </Grid>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
+                   
