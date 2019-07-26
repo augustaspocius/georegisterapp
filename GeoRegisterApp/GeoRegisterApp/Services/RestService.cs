@@ -1,19 +1,15 @@
 ﻿using GeoRegisterApp.Models;
-using GeoRegisterApp.Views;
 using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace GeoRegisterApp.Services
 {
     public class RestService
     {
-        HttpClient _client;
-        public BusyPopUp busyPopUp;
+        readonly HttpClient _client;
 
         public RestService()
         {
@@ -23,7 +19,7 @@ namespace GeoRegisterApp.Services
         public async Task<SendObjectResult> PostSendObjectResultAsync(string uri, string time, string userid, string longitude, string latitude)
         {
             SendObjectBody objectBody = new SendObjectBody { dateTime = time, userId = userid, longitude = longitude, latitude = latitude};
-            SendObjectResult objectResult = new SendObjectResult { };
+            SendObjectResult objectResult = new SendObjectResult();
             try
             {
                 var postcontent = JsonConvert.SerializeObject(objectBody);
@@ -47,7 +43,6 @@ namespace GeoRegisterApp.Services
         {
             ArrivalDeparture objectBody = arrivalDepartureobj;
             //{ PAKEISTI GAUTO REZULTATO DUOMENIS }
-            SendObjectResult objectResult = new SendObjectResult { };
             try
             {
                 var postcontent = JsonConvert.SerializeObject(objectBody);
@@ -55,7 +50,7 @@ namespace GeoRegisterApp.Services
                 if (response.IsSuccessStatusCode)
                 {
                     string content = await response.Content.ReadAsStringAsync();
-                    objectResult = JsonConvert.DeserializeObject<SendObjectResult>(content);
+                    var objectResult = JsonConvert.DeserializeObject<SendObjectResult>(content);
                     objectBody.userName = objectResult.userName;
                     objectBody.userSurname = objectResult.userSurname;
                 }
@@ -64,13 +59,12 @@ namespace GeoRegisterApp.Services
             {
                 Debug.WriteLine("\tERROR {0}", ex.Message);
             }
-
             return objectBody;
         }
 
         public bool ResultIsOk(string result)
         {
-            return result == "0" ? true : false;
+            return result == "0";
         }
 
     }

@@ -1,19 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using Xamarin.Forms;
+using System.Globalization;
 using GeoRegisterApp.Models;
 using Xamarin.Essentials;
 using GeoRegisterApp.Services;
+using Plugin.Permissions;
 using Rg.Plugins.Popup.Services;
-using Rg.Plugins.Popup.Contracts;
 
 namespace GeoRegisterApp.Views
 {
-    public partial class RegisterPage : ContentPage
+    public partial class RegisterPage
     {
-        RestService _restService;
+        readonly RestService _restService;
 
         public RegisterPage()
         {
@@ -23,13 +20,11 @@ namespace GeoRegisterApp.Views
 
         public async void OnRegisterButtonClicked(object sender, EventArgs e)
         {
-            String myDate = DateTime.Now.ToString();
-            string latitude = "-";
-            string longitude = "-";
-            
+            String myDate = DateTime.Now.ToString(CultureInfo.InvariantCulture);
+
             //((App)App.Current).MainPage = new NavigationPage(busyPopUp);
             //await Navigation.PushAsync(busyPopUp);
-            await PopupNavigation.Instance.PushAsync(new BusyPopUp("Nustatomos koordinatės"), true);
+            await PopupNavigation.Instance.PushAsync(new BusyPopUp("Nustatomos koordinatės"));
             try
             {
                 //var location = await Geolocation.GetLastKnownLocationAsync();
@@ -39,8 +34,8 @@ namespace GeoRegisterApp.Views
                 if (location != null)
                 {
                     Console.WriteLine($"Latitude: {location.Latitude}, Longitude: {location.Longitude}, Altitude: {location.Altitude}");
-                    latitude = location.Latitude.ToString("0.0000", System.Globalization.CultureInfo.InvariantCulture);
-                    longitude = location.Longitude.ToString("0.0000", System.Globalization.CultureInfo.InvariantCulture);
+                    var latitude = location.Latitude.ToString("0.0000", CultureInfo.InvariantCulture);
+                    var longitude = location.Longitude.ToString("0.0000", CultureInfo.InvariantCulture);
                     SendObjectResult result = await _restService.PostSendObjectResultAsync(Constants.StatybuDemoEndpoint, myDate, Preferences.Get("user_id", ""), longitude, latitude);
                     if (_restService.ResultIsOk(result.errorID))
                     {
@@ -78,6 +73,8 @@ namespace GeoRegisterApp.Views
             catch (Exception ex)
             {
                 await DisplayAlert("Įspėjimas", "GPS koordinatės negautos, nustatykite leidimą naudoti GPS ir įsijunkite GPS / Unable to get location", "OK");
+                PermissionStatus status = await CrossPermissions.Current.CheckPermissionStatusAsync<Location>();
+                PermissionStatus status = await CrossPermissions.Current.RequestPermissionAsync<CalendarPermission>();
                 await PopupNavigation.Instance.PopAsync();
                 // Unable to get location
             }

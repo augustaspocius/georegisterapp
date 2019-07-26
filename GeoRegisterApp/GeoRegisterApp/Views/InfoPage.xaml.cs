@@ -1,28 +1,12 @@
 ﻿using GeoRegisterApp.Models;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace GeoRegisterApp.Views
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class InfoPage : ContentPage
-	{
-        private string userNameProperty;
-        public string UserNameProperty
-        {
-            get { return userNameProperty; }
-            set
-            {
-                userNameProperty = value;
-                OnPropertyChanged(nameof(userNameProperty)); // Notify that there was a change on this property
-            }
-        }
+	public partial class InfoPage
+    {
 
         public InfoPage (ArrivalDeparture arrivalDeparture)
 		{
@@ -46,9 +30,10 @@ namespace GeoRegisterApp.Views
             await Navigation.PopToRootAsync();
         }
 
-        async void ExitButtonClicked(object sender, EventArgs e)
+        void ExitButtonClicked(object sender, EventArgs e)
         {
-            Android.OS.Process.KillProcess(Android.OS.Process.MyPid());
+            Environment.Exit(0);
+            //System.Threading.Thread.CurrentThread.Abort();
         }
     }
 }

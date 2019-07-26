@@ -4,10 +4,6 @@
             xmlns:views="clr-namespace:GeoRegisterApp.Views"
             x:Class="GeoRegisterApp.Views.MainPage">
 
-    <MasterDetailPage.Master>
-        <views:MenuPage />
-    </MasterDetailPage.Master>
-
     <MasterDetailPage.Detail>
         <NavigationPage>
             <NavigationPage.Icon>

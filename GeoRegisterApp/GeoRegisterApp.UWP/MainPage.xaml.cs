@@ -19,7 +19,7 @@ namespace GeoRegisterApp.UWP
     {
         public MainPage()
         {
-            this.InitializeComponent();
+            InitializeComponent();
 
             LoadApplication(new GeoRegisterApp.App());
         }

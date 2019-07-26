@@ -13,7 +13,7 @@
                 <Label.Text>Sveiki,&#10;prašome užsiregistruoti</Label.Text>
             </Label>
             <AbsoluteLayout>
-                <ActivityIndicator x:Name="activity"  
+                <ActivityIndicator x:Name="Activity"  
                        IsRunning="False"  
                        IsEnabled="False"  
                        IsVisible="False"  
@@ -24,7 +24,7 @@
                     Clicked="OnRegisterButtonClicked"
                     VerticalOptions="CenterAndExpand"
                     HorizontalOptions="Center"
-                    BorderRadius="50"
+                    CornerRadius="50"
                     BorderWidth="2"
                     BackgroundColor="DodgerBlue"
                     TextColor="White"/>

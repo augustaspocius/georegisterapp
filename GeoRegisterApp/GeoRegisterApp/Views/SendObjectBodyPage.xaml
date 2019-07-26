@@ -16,7 +16,7 @@
                 Text="{Binding userId}"
                 HeightRequest="100" />
             <Button Text="Išsaugoti"
-                    BorderRadius="50"
+                    CornerRadius="50"
                     BorderWidth="2"
                     Clicked="OnSaveButtonClicked" />
         </StackLayout>

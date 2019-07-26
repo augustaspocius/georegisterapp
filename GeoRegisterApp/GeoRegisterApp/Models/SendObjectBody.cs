@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace GeoRegisterApp.Models
+﻿namespace GeoRegisterApp.Models
 {
     public class SendObjectBody
     {
